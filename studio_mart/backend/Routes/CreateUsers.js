@@ -56,7 +56,7 @@ body('password', 'invalid password length').isLength({ min: 5 }), body('password
                 }
             }
 
-            const authtoken= jwt.sign(data,jwtsecret)
+            const authtoken= jwt.sign(data,jwtsecret,{ expiresIn: '15m' })
 
             return res.json({ success: true ,authtoken : authtoken});
         } catch (err) {

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const mongoURI = 'mongodb://guptaharshit0056:%40h2706g2001@ac-c9c6get-shard-00-00.kn4yyxw.mongodb.net:27017,ac-c9c6get-shard-00-01.kn4yyxw.mongodb.net:27017,ac-c9c6get-shard-00-02.kn4yyxw.mongodb.net:27017/mern_studio?ssl=true&replicaSet=atlas-vfjoub-shard-0&authSource=admin&retryWrites=true&w=majority'; 
+const mongoURI = 'mongodb://127.0.0.1/StudioMart'; 
 
 const mongoDB = async () => {
   try {
@@ -18,3 +18,4 @@ const mongoDB = async () => {
 };
 
 module.exports = mongoDB;
+

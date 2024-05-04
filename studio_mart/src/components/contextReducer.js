@@ -4,34 +4,33 @@ const cartStateContext = createContext();
 const cartDispatchContext = createContext();
 
 const reducer = (state, action) => {
-  
   switch(action.type){
     case "ADD":
-        return [...state,{id:action.id,name:action.name,price:action.price,qnt:action.qnt,size:action.size}]
+      return [...state, { id: action.id, name: action.name, price: action.price, qnt: action.qnt, size: action.size }];
     case "REMOVE":
-        let newarr=[...state]
-        newarr.splice(action.index,1)
-        return newarr
-
+      let newarr = [...state];
+      newarr.splice(action.index, 1);
+      return newarr;
     case "UPDATE":
-      let arr=[...state]
-      arr.find((food,index)=>{
-        if(food.id===action.id){
-          arr[index]={...food,qnt:parseInt(action.qnt)+food.qnt,price:action.price + food.price}
+      return state.map(food => {
+        if (food.id === action.id) {
+          return {
+            ...food,
+            qnt: parseInt(food.qnt) + parseInt(action.qnt), // Parse both quantities to integers before addition
+            price: parseFloat(food.price) + parseFloat(action.price) // Parse both prices to floats before addition
+          };
+        } else {
+          return food;
         }
-        return arr
-      })
-      return arr
-
+      });
     case "DROP":
-      let emptyarr=[]
-      return emptyarr
-
-        default :
-        console.log("reducer error")
-
+      return [];
+    default:
+      console.log("reducer error");
+      return state;
   }
 };
+
 
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, []);
